@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendário - Universidade da Madeira</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            font-family: Arial, sans-serif;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            background: #f9f9f9;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        .btn-custom {
+            background-color: lightskyblue;
+            color: black;
+        }
+        .btn-custom:hover {
+            background-color: lightblue;
+        }
+        .main-content {
+            flex: 1;
+            /*min-height: calc(100vh - 120px);*/
+            padding-top: 120px;
+            padding-bottom: 120px;
+            text-align: left;
+        }
+        .section-spacing {
+            margin-top: 70px;
+        }
+        .calendar {
+            margin: 20px auto;
+            width: 100%;
+            max-width: 1250px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+        }
+        .calendar-header button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .calendar-header button:hover {
+            background-color: #004494;
+        }
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            background-color: #f4f4f4;
+            padding: 10px 0;
+        }
+        .calendar-days div {
+            text-align: center;
+            font-weight: bold;
+        }
+        .calendar-dates {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-auto-rows: 100px;
+        }
+        .calendar-dates div {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 5px;
+            position: relative;
+        }
+        .event {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            right: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 12px;
+            padding: 2px 5px;
+            border-radius: 3px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .event-forms-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px auto;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .event-form {
+            flex: 1;
+            max-width: 400px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        .event-form input, .event-form button {
+            margin-top: 10px;
+        }
+        .event-form {
+            flex: 1;
+            max-width: 400px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        .event-form input, .event-form button {
+            margin-top: 10px;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            margin-top: auto;
+            text-align: center;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .footer-section {
+            
+            margin-bottom: 20px;
+        }
+        .footer-section h5 {
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+        }
+        .accordion-button {
+            background-color: #333;
+            color: #fff;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: #444;
+        }
+        .accordion-body {
+            background-color: #222;
+            color: #fff;
+        }
+        .desktop-footer {
+            display: none;
+        }
+        .mobile-footer {
+            display: block;
+        }
+        @media (min-width: 768px) {
+            .desktop-footer {
+                display: block;
+            }
+            .mobile-footer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+  
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a href="http://127.0.0.1:3000/Projeto/home.html" class="navbar-brand" href="#">
+            <img src="Images/logo.png" alt="Universidade da Madeira" height="40">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Projeto/home.html#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Projeto/alunos.html#">Alunos</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Projeto/docente.html#">Docentes</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Projeto/404.html#">Documentos</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Projeto/administrador.html#">Administrador</a></li>
+                <li class="nav-item"><a class="btn btn-custom" href="http://127.0.0.1:3000/Projeto/login.html#">Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Main content -->
+<div class="main-content">
+    <div class="calendar">
+        <div class="calendar-header">
+            <button id="prevMonth">&lt;</button>
+            <div id="currentMonth">Janeiro 2025</div>
+            <button id="nextMonth">&gt;</button>
+        </div>
+        <div class="calendar-days">
+            <div>Dom</div>
+            <div>Seg</div>
+            <div>Ter</div>
+            <div>Qua</div>
+            <div>Qui</div>
+            <div>Sex</div>
+            <div>Sáb</div>
+        </div>
+        <div class="calendar-dates" id="calendarDates">
+            <!-- As datas serão inseridas dinamicamente -->
+        </div>
+    </div>
+
+    <div class="event-forms-container">
+        <div class="event-form">
+            <h5>Adicionar Evento</h5>
+            <form id="eventForm">
+                <label for="eventDate">Data do Evento</label>
+                <input type="date" id="eventDate" class="form-control" required>
+                <label for="eventTitle">Título do Evento</label>
+                <input type="text" id="eventTitle" class="form-control" placeholder="Título do Evento" required>
+                <button type="submit" class="btn btn-primary w-100">Adicionar</button>
+            </form>
+        </div>
+
+        <div class="event-form">
+            <h5>Remover Evento</h5>
+            <form id="removeEventForm">
+                <label for="removeEventDate">Data do Evento</label>
+                <input type="date" id="removeEventDate" class="form-control" required>
+                <label for="removeEventTitle">Título do Evento</label>
+                <input type="text" id="removeEventTitle" class="form-control" placeholder="Título do Evento" required>
+                <button type="submit" class="btn btn-danger w-100">Remover</button>
+            </form>
+        </div>
+    </div>
+    
+
+
+
+</div>
+
+<!-- Footer -->
+<footer>
+    <!-- Desktop Footer -->
+    <div class="container desktop-footer">
+        <div class="row">
+            <div class="col-md-3 footer-section">
+                <h5>Contactos</h5>
+                <p>Reitoria: (+351) 291 209 400</p>
+                <p>Campus: (+351) 291 705 000</p>
+                <p><a href="#">Contactos Adicionais</a></p>
+            </div>
+            <div class="col-md-3 footer-section">
+                <h5>Legal</h5>
+                <p><a href="#">Documentação Legal</a></p>
+                <p><a href="#">Regulamentos</a></p>
+                <p><a href="#">Política de Dados</a></p>
+            </div>
+            <div class="col-md-3 footer-section">
+                <h5>Ligações</h5>
+                <p><a href="#">Notícias e Destaques</a></p>
+                <p><a href="#">Calendários e Horários</a></p>
+                <p><a href="#">Diretório de Pessoas</a></p>
+            </div>
+            <div class="col-md-3 footer-section">
+                <h5>Ensino</h5>
+                <p><a href="#">Oferta Formativa</a></p>
+                <p><a href="#">Licenciaturas</a></p>
+                <p><a href="#">Mestrados</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2025 UNIVERSIDADE da MADEIRA</p>
+        </div>
+    </div>
+
+    <!-- Mobile Footer -->
+    <div class="container mobile-footer">
+        <div class="accordion" id="footerAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Contactos
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#footerAccordion">
+                    <div class="accordion-body">
+                        <p>Reitoria: (+351) 291 209 400</p>
+                        <p>Campus: (+351) 291 705 000</p>
+                        <p><a href="#">Contactos Adicionais</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Legal
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#footerAccordion">
+                    <div class="accordion-body">
+                        <p><a href="#">Documentação Legal</a></p>
+                        <p><a href="#">Regulamentos</a></p>
+                        <p><a href="#">Política de Dados</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Ligações
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#footerAccordion">
+                    <div class="accordion-body">
+                        <p><a href="#">Notícias e Destaques</a></p>
+                        <p><a href="#">Calendários e Horários</a></p>
+                        <p><a href="#">Diretório de Pessoas</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Ensino
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#footerAccordion">
+                    <div class="accordion-body">
+                        <p><a href="#">Oferta Formativa</a></p>
+                        <p><a href="#">Licenciaturas</a></p>
+                        <p><a href="#">Mestrados</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2025 UNIVERSIDADE da MADEIRA</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const events = [
+        { date: "2025-01-06", title: "Sistemas Operativos e Redes" },
+        { date: "2025-01-07", title: "Introdução à Programação" },
+        { date: "2025-01-09", title: "Prova Prática de Programação" },
+        { date: "2025-01-10", title: "Frequência de Redes" },
+    ];
+
+    function generateCalendar(month, year) {
+        const calendarDates = document.getElementById("calendarDates");
+        calendarDates.innerHTML = "";
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        // Preenchendo os dias vazios antes do primeiro dia
+        for (let i = 0; i < firstDay; i++) {
+            calendarDates.innerHTML += `<div></div>`;
+        }
+
+        // Preenchendo os dias do mês
+        for (let day = 1; day <= daysInMonth; day++) {
+            const date = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+            const event = events.find(e => e.date === date);
+            calendarDates.innerHTML += `
+                <div>
+                    ${day}
+                    ${event ? `<div class="event">${event.title}</div>` : ""}
+                </div>
+            `;
+        }
+    }
+
+    let currentMonth = 0; // Janeiro
+    let currentYear = 2025;
+
+    document.getElementById("prevMonth").addEventListener("click", () => {
+        currentMonth--;
+        if (currentMonth < 0) {
+            currentMonth = 11;
+            currentYear--;
+        }
+        updateCalendar();
+    });
+
+    document.getElementById("nextMonth").addEventListener("click", () => {
+        currentMonth++;
+        if (currentMonth > 11) {
+            currentMonth = 0;
+            currentYear++;
+        }
+        updateCalendar();
+    });
+
+    document.getElementById("eventForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const eventDate = document.getElementById("eventDate").value;
+        const eventTitle = document.getElementById("eventTitle").value;
+
+        if (eventDate && eventTitle) {
+            events.push({ date: eventDate, title: eventTitle });
+            updateCalendar();
+            document.getElementById("eventForm").reset();
+        }
+    });
+
+    document.getElementById("removeEventForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const removeEventDate = document.getElementById("removeEventDate").value;
+            const removeEventTitle = document.getElementById("removeEventTitle").value;
+
+            if (removeEventDate && removeEventTitle) {
+                const eventIndex = events.findIndex(
+                    e => e.date === removeEventDate && e.title === removeEventTitle
+                );
+
+                if (eventIndex !== -1) {
+                    events.splice(eventIndex, 1);
+                    alert("Evento removido com sucesso!");
+                } else {
+                    alert("Evento não encontrado!");
+                }
+
+                updateCalendar();
+                document.getElementById("removeEventForm").reset();
+            }
+        });
+        
+    function updateCalendar() {
+        const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+        document.getElementById("currentMonth").innerText = `${monthNames[currentMonth]} ${currentYear}`;
+        generateCalendar(currentMonth, currentYear);
+    }
+
+    updateCalendar();
+</script>

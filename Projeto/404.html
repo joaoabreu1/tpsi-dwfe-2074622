@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Universidade da Madeira</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        .btn-custom {
+            background-color: lightskyblue;
+            color: black;
+        }
+        .btn-custom:hover {
+            background-color: lightblue;
+        }
+        .error-container {
+            text-align: center;
+            max-width: 600px;
+        }
+        .error-container img {
+            max-width: 100%;
+            height: auto;
+        }
+        .error-container h1 {
+            font-size: 3rem;
+            color: #0055A5;
+            margin: 20px 0;
+        }
+        .error-container p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+        .btn-home {
+            margin-top: 20px;
+            color: black;
+            background-color: lightskyblue;
+        }
+        .btn-home:hover {
+            background-color: lightblue;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .footer-section {
+            margin-bottom: 20px;
+        }
+        .footer-section h5 {
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+        }
+        .accordion-button {
+            background-color: #333;
+            color: #fff;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: #444;
+        }
+        .accordion-body {
+            background-color: #222;
+            color: #fff;
+        }
+        .desktop-footer {
+            display: none;
+        }
+        .mobile-footer {
+            display: block;
+        }
+        @media (min-width: 768px) {
+            .desktop-footer {
+                display: block;
+            }
+            .mobile-footer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a href="http://127.0.0.1:3000/Projeto/home.html" class="navbar-brand" href="#">
+            <img src="Images/logo.png" alt="Universidade da Madeira" height="40">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Projeto/home.html#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Projeto/alunos.html#">Alunos</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Projeto/docente.html#">Docentes</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Projeto/404.html#">Documentos</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Projeto/administrador.html#">Administrador</a></li>
+                <li class="nav-item"><a class="btn btn-custom" href="http://127.0.0.1:3000/Projeto/login.html#">Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="error-container">
+        <img src="Images/404.png" alt="Erro 404">
+        <h1>Oops! Página Não Encontrada</h1>
+        <p>O link que você acessou é inválido ou a página está em desenvolvimento.</p>
+        <a href="http://127.0.0.1:3000/Projeto/home.html#" class="btn btn-home btn-lg">Voltar para a Página Inicial</a>
+    </div>
+</main>
+
+</body>
+
+<footer>
+<div class="container desktop-footer">
+    <div class="row">
+        <div class="col-md-3 footer-section">
+            <h5>Contactos</h5>
+            <p>Reitoria: (+351) 291 209 400</p>
+            <p>Campus: (+351) 291 705 000</p>
+            <p><a href="#">Contactos Adicionais</a></p>
+        </div>
+        <div class="col-md-3 footer-section">
+            <h5>Legal</h5>
+            <p><a href="#">Documentação Legal</a></p>
+            <p><a href="#">Regulamentos</a></p>
+            <p><a href="#">Política de Dados</a></p>
+        </div>
+        <div class="col-md-3 footer-section">
+            <h5>Ligações</h5>
+            <p><a href="#">Notícias e Destaques</a></p>
+            <p><a href="#">Calendários e Horários</a></p>
+            <p><a href="#">Diretório de Pessoas</a></p>
+        </div>
+        <div class="col-md-3 footer-section">
+            <h5>Ensino</h5>
+            <p><a href="#">Oferta Formativa</a></p>
+            <p><a href="#">Licenciaturas</a></p>
+            <p><a href="#">Mestrados</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright © 2025 UNIVERSIDADE da MADEIRA</p>
+    </div>
+</div>
+
+<div class="container mobile-footer">
+    <div class="accordion" id="footerAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Contactos
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#footerAccordion">
+                <div class="accordion-body">
+                    <p>Reitoria: (+351) 291 209 400</p>
+                    <p>Campus: (+351) 291 705 000</p>
+                    <p><a href="#">Contactos Adicionais</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Legal
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#footerAccordion">
+                <div class="accordion-body">
+                    <p><a href="#">Documentação Legal</a></p>
+                    <p><a href="#">Regulamentos</a></p>
+                    <p><a href="#">Política de Dados</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Ligações
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#footerAccordion">
+                <div class="accordion-body">
+                    <p><a href="#">Notícias e Destaques</a></p>
+                    <p><a href="#">Calendários e Horários</a></p>
+                    <p><a href="#">Diretório de Pessoas</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Ensino
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#footerAccordion">
+                <div class="accordion-body">
+                    <p><a href="#">Oferta Formativa</a></p>
+                    <p><a href="#">Licenciaturas</a></p>
+                    <p><a href="#">Mestrados</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Copyright © 2025 UNIVERSIDADE da MADEIRA</p>
+    </div>
+</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>

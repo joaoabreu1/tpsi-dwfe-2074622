@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Alunos - Universidade da Madeira</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        html, body {
+            font-family: Arial, sans-serif;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            background: #f9f9f9;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        .btn-custom {
+            background-color: lightskyblue;
+            color: black;
+        }
+        .btn-custom:hover {
+            background-color: lightblue;
+        }
+        .main-content {
+            flex: 1;
+            min-height: calc(100vh - 120px);
+            padding-top: 120px;
+            padding-bottom: 120px;
+            text-align: left;
+        }
+        .section-spacing {
+            margin-top: 70px;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            margin-top: auto;
+            text-align: center;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .footer-section {
+            margin-bottom: 20px;
+        }
+        .footer-section h5 {
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+        }
+        .accordion-button {
+            background-color: #333;
+            color: #fff;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: #444;
+        }
+        .accordion-body {
+            background-color: #222;
+            color: #fff;
+        }
+        .desktop-footer {
+            display: none;
+        }
+        .mobile-footer {
+            display: block;
+        }
+        @media (min-width: 768px) {
+            .desktop-footer {
+                display: block;
+            }
+            .mobile-footer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+  
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a href="http://127.0.0.1:3000/Projeto/home.html" class="navbar-brand" href="#">
+            <img src="Images/logo.png" alt="Universidade da Madeira" height="40">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Projeto/home.html#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Projeto/alunos.html#">Notas</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Projeto/calendario.html#">Horários</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Projeto/pagamentos.html">Pagamentos</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Projeto/404.html#">Documentos</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Projeto/administrador.html#">Administrador</a></li>
+                <li class="nav-item"><a class="btn btn-custom" href="http://127.0.0.1:3000/Projeto/login.html#">Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="main-content">
+    <div class="container my-5">
+        <div class="table-container">
+            <h2 class="mb-4">Unidades Curriculares e Notas</h2>
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Unidade Curricular</th>
+                        <th>Docente</th>
+                        <th>Nota Final</th>
+                        <th>Detalhes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Matemática Discreta</td>
+                        <td>Dr. João Silva</td>
+                        <td>16</td>
+                        <td>
+                            <span class="toggle-icon" data-target="uc1">🔽</span>
+                        </td>
+                    </tr>
+                    <tr class="sub-rows uc1">
+                        <td></td>
+                        <td colspan="3">Prova 1</td>
+                        <td>14</td>
+                    </tr>
+                    <tr class="sub-rows uc1">
+                        <td></td>
+                        <td colspan="3">Prova 2</td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Algoritmos e Estruturas de Dados</td>
+                        <td>Prof. Ana Maria</td>
+                        <td>18</td>
+                        <td>
+                            <span class="toggle-icon" data-target="uc2">🔽</span>
+                        </td>
+                    </tr>
+                    <tr class="sub-rows uc2">
+                        <td></td>
+                        <td colspan="3">Prova 1</td>
+                        <td>16</td>
+                    </tr>
+                    <tr class="sub-rows uc2">
+                        <td></td>
+                        <td colspan="3">Trabalho Final</td>
+                        <td>19</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Bases de Dados</td>
+                        <td>Dr. Luís Ferreira</td>
+                        <td>14</td>
+                        <td>
+                            <span class="toggle-icon" data-target="uc3">🔽</span>
+                        </td>
+                    </tr>
+                    <tr class="sub-rows uc3">
+                        <td></td>
+                        <td colspan="3">Prova Única</td>
+                        <td>14</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+
+<footer>
+    <div class="container desktop-footer">
+        <div class="row">
+            <div class="col-md-3 footer-section">
+                <h5>Contactos</h5>
+                <p>Reitoria: (+351) 291 209 400</p>
+                <p>Campus: (+351) 291 705 000</p>
+                <p><a href="#">Contactos Adicionais</a></p>
+            </div>
+            <div class="col-md-3 footer-section">
+                <h5>Legal</h5>
+                <p><a href="#">Documentação Legal</a></p>
+                <p><a href="#">Regulamentos</a></p>
+                <p><a href="#">Política de Dados</a></p>
+            </div>
+            <div class="col-md-3 footer-section">
+                <h5>Ligações</h5>
+                <p><a href="#">Notícias e Destaques</a></p>
+                <p><a href="http://127.0.0.1:3000/Projeto/calendario.html">Calendários e Horários</a></p>
+                <p><a href="#">Diretório de Pessoas</a></p>
+            </div>
+            <div class="col-md-3 footer-section">
+                <h5>Ensino</h5>
+                <p><a href="#">Oferta Formativa</a></p>
+                <p><a href="#">Licenciaturas</a></p>
+                <p><a href="#">Mestrados</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2025 UNIVERSIDADE da MADEIRA</p>
+        </div>
+    </div>
+
+    <div class="container mobile-footer">
+        <div class="accordion" id="footerAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Contactos
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#footerAccordion">
+                    <div class="accordion-body">
+                        <p>Reitoria: (+351) 291 209 400</p>
+                        <p>Campus: (+351) 291 705 000</p>
+                        <p><a href="#">Contactos Adicionais</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Legal
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#footerAccordion">
+                    <div class="accordion-body">
+                        <p><a href="#">Documentação Legal</a></p>
+                        <p><a href="#">Regulamentos</a></p>
+                        <p><a href="#">Política de Dados</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Ligações
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#footerAccordion">
+                    <div class="accordion-body">
+                        <p><a href="#">Notícias e Destaques</a></p>
+                        <p><a href="http://127.0.0.1:3000/Projeto/calendario.html">Calendários e Horários</a></p>
+                        <p><a href="#">Diretório de Pessoas</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Ensino
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#footerAccordion">
+                    <div class="accordion-body">
+                        <p><a href="#">Oferta Formativa</a></p>
+                        <p><a href="#">Licenciaturas</a></p>
+                        <p><a href="#">Mestrados</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2025 UNIVERSIDADE da MADEIRA</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.toggle-icon').forEach(icon => {
+            const target = icon.getAttribute('data-target');
+            const rows = document.querySelectorAll(`.${target}`);
+            rows.forEach(row => {
+                row.style.display = 'none';
+            });
+            icon.textContent = '🔽'; 
+        });
+        document.querySelectorAll('.toggle-icon').forEach(icon => {
+            icon.addEventListener('click', () => {
+                const target = icon.getAttribute('data-target');
+                const rows = document.querySelectorAll(`.${target}`);
+                rows.forEach(row => {
+                    row.style.display = row.style.display === 'table-row' ? 'none' : 'table-row';
+                });
+                icon.textContent = icon.textContent === '🔽' ? '🔼' : '🔽';
+            });
+        });
+    });
+</script>
+
+
